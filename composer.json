@@ -1,0 +1,21 @@
+{
+    "name": "hubkat/event",
+    "description": "parse github webhook events",
+    "homepage":"https://github.com/hubkat/hubkat.event",
+    "type": "library",
+    "require": {
+        "psr/http-message": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jake johns",
+            "email": "jake@jakejohns.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hubkat\\Event\\": "src/"
+        }
+    }
+}
