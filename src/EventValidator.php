@@ -6,15 +6,8 @@ namespace Hubkat\Event;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-/**
- * EventValidator
- *
- * @category CategoryName
- * @package  PackageName
- * @author   Jake Johns <jake@jakejohns.net>
- * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
- * @link     http://jakejohns.net
- */
+use Hubkat\EventInterface\EventInterface as Event;
+
 class EventValidator
 {
     protected $secret;
