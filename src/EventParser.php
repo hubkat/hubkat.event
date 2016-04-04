@@ -12,7 +12,12 @@ class EventParser
 
     public function __construct(callable $eventFactory = null)
     {
-        $this->eventFactory = $eventFactory ?: [$this, 'eventFactory'];
+        if (null === $eventFactory) {
+            $factory = new EventFactory;
+            $eventFactory = [$factory, 'newEventFromRequest'];
+        }
+
+        $this->eventFactory = $eventFactory;
     }
 
     public function __invoke(Request $request, Response $response, callable $next)
@@ -53,25 +58,6 @@ class EventParser
             && $request->hasHeader('x-github-event')
             && $request->hasHeader('x-github-delivery')
             && $request->hasHeader('x-hub-signature')
-        );
-    }
-
-    /**
-     * Event Factory
-     *
-     * @param Request $request DESCRIPTION
-     *
-     * @return mixed
-     *
-     * @access protected
-     */
-    protected function eventFactory(Request $request)
-    {
-        return new Event(
-            $request->getHeaderLine('x-github-delivery'),
-            $request->getHeaderLine('x-github-event'),
-            $request->getHeaderLine('x-hub-signature'),
-            (string) $request->getBody()
         );
     }
 }
